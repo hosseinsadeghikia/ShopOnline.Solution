@@ -1,0 +1,31 @@
+﻿@page "/"
+@inherits ProductsBase
+
+@if (Products == null && ErrorMessage == null)
+{
+    <DisplayError/>
+}
+else
+{
+    <h3 class="mb-5">Products</h3>
+
+    var productCount = Products.Count();
+
+    @if (productCount > 0)
+    {
+        var groupedProductsByCategory = from product in Products
+            group product by product.CategoryId
+            into prodByCatGroup
+            orderby prodByCatGroup.Key
+            select prodByCatGroup;
+
+        <div class="row mt-3">
+            @foreach (var productGroup in groupedProductsByCategory)
+            {
+                <h4>@productGroup.FirstOrDefault(x=>x.CategoryId == productGroup.Key)?.CategoryName</h4>
+                <DisplayProducts Products="@productGroup.Take(4)"></DisplayProducts>
+                <hr class="mb-3"/>
+            }
+        </div>
+    }
+}
