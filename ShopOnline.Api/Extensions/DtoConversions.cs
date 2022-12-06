@@ -54,7 +54,7 @@ namespace ShopOnline.Api.Extensions
                         ProductImageUrl = product.ImageUrl,
                         Price = product.Price,
                         CartId = cartItem.CartId,
-                        Qty = product.Qty,
+                        Qty = cartItem.Qty,
                         TotalPrice = product.Price * cartItem.Qty
                     }).ToList();
         }

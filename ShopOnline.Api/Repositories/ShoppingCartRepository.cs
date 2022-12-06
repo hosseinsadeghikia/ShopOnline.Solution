@@ -45,9 +45,18 @@ namespace ShopOnline.Api.Repositories
             return null!;
         }
 
-        public Task<CartItem> UpdateQty(int id, CartItemQtyUpdateDto cartItemQtyUpdateDto)
+        public async Task<CartItem> UpdateQty(int id, CartItemQtyUpdateDto cartItemQtyUpdateDto)
         {
-            throw new NotImplementedException();
+            var item = await _context.CartItems.FindAsync(id);
+
+            if (item != null)
+            {
+                item.Qty = cartItemQtyUpdateDto.Qty;
+                await _context.SaveChangesAsync();
+                return item;
+            }
+
+            return null!;
         }
 
         public async Task<CartItem> DeleteItem(int id)
@@ -80,7 +89,7 @@ namespace ShopOnline.Api.Repositories
 
         public async Task<IEnumerable<CartItem>> GetItems(int userId)
         {
-            return await (from cart in _context.Carts
+            var res = await (from cart in _context.Carts
                           join cartItem in _context.CartItems
                               on cart.Id equals cartItem.CartId
                           where cart.UserId == userId
@@ -91,6 +100,8 @@ namespace ShopOnline.Api.Repositories
                               Qty = cartItem.Qty,
                               CartId = cartItem.CartId
                           }).ToListAsync();
+
+            return res; 
         }
     }
 }
