@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using ShopOnline.Models.DTOs;
+﻿using ShopOnline.Models.DTOs;
 
 namespace ShopOnline.Web.Services.Contracts
 {
