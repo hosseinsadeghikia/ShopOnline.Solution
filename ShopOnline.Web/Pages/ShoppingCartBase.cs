@@ -13,6 +13,9 @@ namespace ShopOnline.Web.Pages
         [Inject]
         public IShoppingCartService ShoppingCartService { get; set; }
 
+        [Inject]
+        public IManageCartItemsLocalStorageService CartItemsLocalStorageService { get; set; }
+
         public List<CartItemDto> ShoppingCartItems { get; set; }
         public string ErrorMessage { get; set; }
 
@@ -24,7 +27,8 @@ namespace ShopOnline.Web.Pages
         {
             try
             {
-                ShoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
+                //ShoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
+                ShoppingCartItems = await CartItemsLocalStorageService.GetCollection();
                 CartChanged();
             }
             catch (Exception ex)
@@ -55,7 +59,7 @@ namespace ShopOnline.Web.Pages
 
                     var returnedUpdateItemDto = await ShoppingCartService.UpdateQty(updateDtoItem);
 
-                    UpdateItemTotalPrice(returnedUpdateItemDto);
+                    await UpdateItemTotalPrice(returnedUpdateItemDto);
 
                     CartChanged();
 
@@ -89,7 +93,7 @@ namespace ShopOnline.Web.Pages
             await JsRuntime.InvokeVoidAsync("MakeUpdateQtyButtonVisible", id, visible); //input is js function name
         }
 
-        private void UpdateItemTotalPrice(CartItemDto cartItemDto)
+        private async Task UpdateItemTotalPrice(CartItemDto cartItemDto)
         {
             var item = GetCartItem(cartItemDto.Id);
 
@@ -97,6 +101,8 @@ namespace ShopOnline.Web.Pages
             {
                 item.TotalPrice = item.Price * item.Qty;
             }
+
+            await CartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
         }
 
         private void CalculateCartSummaryTotals()
@@ -120,11 +126,13 @@ namespace ShopOnline.Web.Pages
             return ShoppingCartItems.FirstOrDefault(x => x.Id == id)!;
         }
 
-        private void RemoveCartItem(int id)
+        private async Task RemoveCartItem(int id)
         {
             var cartItemDto = GetCartItem(id);
 
             ShoppingCartItems.Remove(cartItemDto);
+
+            await CartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
         }
 
         private void CartChanged()

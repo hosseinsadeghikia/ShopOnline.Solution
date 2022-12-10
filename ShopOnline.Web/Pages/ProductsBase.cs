@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using ShopOnline.Models.DTOs;
+using ShopOnline.Web.Services;
 using ShopOnline.Web.Services.Contracts;
 
 namespace ShopOnline.Web.Pages
@@ -12,6 +13,12 @@ namespace ShopOnline.Web.Pages
         [Inject]
         public IShoppingCartService ShoppingCartService { get; set; }
 
+        [Inject]
+        IManageProductsLocalStorageService ProductsLocalStorageService { get; set; }
+
+        [Inject]
+        IManageCartItemsLocalStorageService CartItemsLocalStorageService { get; set; }
+
         public IEnumerable<ProductDto>? Products { get; set; }
 
         public string ErrorMessage { get; set; }
@@ -20,10 +27,15 @@ namespace ShopOnline.Web.Pages
         {
             try
             {
-                Products = await ProductService.GetItems();
+                await ClearLocalStorage();
 
-                var shoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
-                var totalQty = shoppingCartItems.Sum(x=>x.Qty);
+                //Products = await ProductService.GetItems();
+                Products = await ProductsLocalStorageService.GetCollection();
+
+                //var shoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
+                var shoppingCartItems = await CartItemsLocalStorageService.GetCollection();
+
+                var totalQty = shoppingCartItems.Sum(x => x.Qty);
 
                 ShoppingCartService.RaiseEventOnShoppingCartChanged(totalQty);
             }
@@ -31,6 +43,12 @@ namespace ShopOnline.Web.Pages
             {
                 ErrorMessage = ex.Message;
             }
+        }
+
+        private async Task ClearLocalStorage()
+        {
+            await ProductsLocalStorageService.RemoveCollection();
+            await CartItemsLocalStorageService.RemoveCollection();
         }
     }
 }
