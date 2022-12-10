@@ -28,7 +28,7 @@ namespace ShopOnline.Api.Repositories
             return categories;
         }
 
-        public async Task<Product> GetItem(int id)
+        public async Task<Product?> GetItem(int id)
         {
             //var product = await _shopOnlineDbContext.Products.FindAsync(id);
             var product = await _shopOnlineDbContext.Products
@@ -37,7 +37,7 @@ namespace ShopOnline.Api.Repositories
             return product;
         }
 
-        public async Task<ProductCategory> GetCategory(int id)
+        public async Task<ProductCategory?> GetCategory(int id)
         {
             var category = await _shopOnlineDbContext.ProductCategories.SingleOrDefaultAsync(x => x.Id == id);
             return category;

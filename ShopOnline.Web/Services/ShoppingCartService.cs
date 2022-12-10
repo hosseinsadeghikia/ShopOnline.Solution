@@ -1,11 +1,8 @@
-﻿using System.Net.Http;
-using System.Net.Http.Json;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using ShopOnline.Models.DTOs;
 using ShopOnline.Web.Services.Contracts;
+using System.Net.Http.Json;
+using System.Text;
 
 namespace ShopOnline.Web.Services
 {
@@ -19,7 +16,7 @@ namespace ShopOnline.Web.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<CartItemDto>> GetItems(int userId)
+        public async Task<List<CartItemDto>?> GetItems(int userId)
         {
             try
             {
@@ -46,7 +43,7 @@ namespace ShopOnline.Web.Services
             }
         }
 
-        public async Task<CartItemDto> AddItem(CartItemToAddDto cartItemToAddDto)
+        public async Task<CartItemDto?> AddItem(CartItemToAddDto cartItemToAddDto)
         {
             try
             {
@@ -59,7 +56,7 @@ namespace ShopOnline.Web.Services
                         return default(CartItemDto);
                     }
 
-                    return (await response.Content.ReadFromJsonAsync<CartItemDto>())!;
+                    return await response.Content.ReadFromJsonAsync<CartItemDto>();
                 }
                 else
                 {
@@ -73,7 +70,7 @@ namespace ShopOnline.Web.Services
             }
         }
 
-        public async Task<CartItemDto> DeleteItem(int id)
+        public async Task<CartItemDto?> DeleteItem(int id)
         {
             try
             {
@@ -81,10 +78,10 @@ namespace ShopOnline.Web.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return (await response.Content.ReadFromJsonAsync<CartItemDto>())!;
+                    return await response.Content.ReadFromJsonAsync<CartItemDto>();
                 }
 
-                return default(CartItemDto)!;
+                return default(CartItemDto);
             }
             catch (Exception)
             {
@@ -92,7 +89,7 @@ namespace ShopOnline.Web.Services
             }
         }
 
-        public async Task<CartItemDto> UpdateQty(CartItemQtyUpdateDto cartItemQtyUpdateDto)
+        public async Task<CartItemDto?> UpdateQty(CartItemQtyUpdateDto cartItemQtyUpdateDto)
         {
             try
             {
@@ -103,7 +100,7 @@ namespace ShopOnline.Web.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return (await response.Content.ReadFromJsonAsync<CartItemDto>())!;
+                    return await response.Content.ReadFromJsonAsync<CartItemDto>();
                 }
 
                 return null;

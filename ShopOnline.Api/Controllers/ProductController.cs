@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration.EnvironmentVariables;
+﻿using Microsoft.AspNetCore.Mvc;
 using ShopOnline.Api.Extensions;
 using ShopOnline.Api.Repositories.Contracts;
 using ShopOnline.Models.DTOs;
@@ -29,16 +27,13 @@ namespace ShopOnline.Api.Controllers
                 {
                     return NotFound();
                 }
-                else
-                {
-                    var productDto = products.ConvertToDto();
-                    return Ok(productDto);
-                }
+
+                var productDto = products.ConvertToDto();
+                return Ok(productDto);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -53,17 +48,14 @@ namespace ShopOnline.Api.Controllers
                 {
                     return NotFound();
                 }
-                else
-                {
-                    var productDto = product.ConvertToDto();
 
-                    return Ok(productDto);
-                }
+                var productDto = product.ConvertToDto();
+
+                return Ok(productDto);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -78,10 +70,9 @@ namespace ShopOnline.Api.Controllers
 
                 return Ok(productCategoryDto);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -96,10 +87,9 @@ namespace ShopOnline.Api.Controllers
                 var productDto = products.ConvertToDto();
                 return Ok(productDto);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

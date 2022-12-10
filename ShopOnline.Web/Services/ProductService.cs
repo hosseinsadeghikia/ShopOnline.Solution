@@ -13,7 +13,7 @@ namespace ShopOnline.Web.Services
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetItems()
+        public async Task<IEnumerable<ProductDto>?> GetItems()
         {
             try
             {
@@ -39,7 +39,7 @@ namespace ShopOnline.Web.Services
             }
         }
 
-        public async Task<ProductDto> GetItem(int id)
+        public async Task<ProductDto?> GetItem(int id)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace ShopOnline.Web.Services
             }
         }
 
-        public async Task<IEnumerable<ProductCategoryDto>> GetProductCategories()
+        public async Task<IEnumerable<ProductCategoryDto>?> GetProductCategories()
         {
             try
             {
@@ -86,13 +86,13 @@ namespace ShopOnline.Web.Services
                     throw new Exception(message);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        public async Task<IEnumerable<ProductDto>> GetItemsByCategory(int categoryId)
+        public async Task<IEnumerable<ProductDto>?> GetItemsByCategory(int categoryId)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace ShopOnline.Web.Services
                     throw new Exception(message);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

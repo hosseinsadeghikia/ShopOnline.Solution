@@ -18,7 +18,7 @@ namespace ShopOnline.Web.Services
             _shoppingCartService = shoppingCartService;
         }
 
-        public async Task<List<CartItemDto>> GetCollection()
+        public async Task<List<CartItemDto>?> GetCollection()
         {
             return await _localStorageService.GetItemAsync<List<CartItemDto>>(key)
                    ?? await AddCollection();
@@ -34,7 +34,7 @@ namespace ShopOnline.Web.Services
             await _localStorageService.RemoveItemAsync(key);
         }
 
-        private async Task<List<CartItemDto>> AddCollection()
+        private async Task<List<CartItemDto>?> AddCollection()
         {
             var shoppingCartCollection = await _shoppingCartService.GetItems(HardCoded.UserId);
 

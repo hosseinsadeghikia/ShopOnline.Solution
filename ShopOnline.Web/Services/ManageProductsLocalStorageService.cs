@@ -18,7 +18,7 @@ namespace ShopOnline.Web.Services
             _productService = productService;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetCollection()
+        public async Task<IEnumerable<ProductDto>?> GetCollection()
         {
             return await _localStorageService.GetItemAsync<IEnumerable<ProductDto>>(key)
                    ?? await AddCollection();
@@ -29,7 +29,7 @@ namespace ShopOnline.Web.Services
             await _localStorageService.RemoveItemAsync(key);
         }
 
-        private async Task<IEnumerable<ProductDto>> AddCollection()
+        private async Task<IEnumerable<ProductDto>?> AddCollection()
         {
             var productCollection = await _productService.GetItems();
 
