@@ -1,4 +1,4 @@
-﻿using ShopOnline.Models.DTOs;
+﻿using ShopOnline.Core.DTOs;
 
 namespace ShopOnline.Web.Services.Contracts
 {

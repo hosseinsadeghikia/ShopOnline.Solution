@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using ShopOnline.Core.DTOs;
 using ShopOnline.Models.DTOs;
 using ShopOnline.Web.Services.Contracts;
 

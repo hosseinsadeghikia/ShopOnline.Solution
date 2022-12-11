@@ -3,6 +3,7 @@ using ShopOnline.Models.DTOs;
 using ShopOnline.Web.Services.Contracts;
 using System.Net.Http.Json;
 using System.Text;
+using ShopOnline.Core.DTOs;
 
 namespace ShopOnline.Web.Services
 {
