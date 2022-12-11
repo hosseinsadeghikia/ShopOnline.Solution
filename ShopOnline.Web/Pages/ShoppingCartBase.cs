@@ -16,10 +16,10 @@ namespace ShopOnline.Web.Pages
         [Inject]
         public IManageCartItemsLocalStorageService CartItemsLocalStorageService { get; set; }
 
-        public List<CartItemDto> ShoppingCartItems { get; set; }
+        public List<CartItemDto>? ShoppingCartItems { get; set; }
         public string ErrorMessage { get; set; }
 
-        protected string TotalPrice { get; set; }
+        protected string? TotalPrice { get; set; }
 
         public int TotalQuantity { get; set; }
 
@@ -39,9 +39,8 @@ namespace ShopOnline.Web.Pages
 
         protected async Task DeleteCartItem_Click(int id)
         {
-            var cartItemDto = await ShoppingCartService.DeleteItem(id);
-
-            RemoveCartItem(id);
+            await ShoppingCartService.DeleteItem(id);
+            await RemoveCartItem(id);
             CartChanged();
         }
 
@@ -59,16 +58,16 @@ namespace ShopOnline.Web.Pages
 
                     var returnedUpdateItemDto = await ShoppingCartService.UpdateQty(updateDtoItem);
 
-                    await UpdateItemTotalPrice(returnedUpdateItemDto);
-
-                    CartChanged();
-
-                    await MakeUpdateQtyButtonVisible(id, false);
-
+                    if (returnedUpdateItemDto != null)
+                    {
+                        await UpdateItemTotalPrice(returnedUpdateItemDto);
+                        CartChanged();
+                        await MakeUpdateQtyButtonVisible(id, false);
+                    }
                 }
                 else
                 {
-                    var item = ShoppingCartItems.FirstOrDefault(x => x.Id == id);
+                    var item = ShoppingCartItems?.FirstOrDefault(x => x.Id == id);
 
                     if (item != null)
                     {
@@ -113,7 +112,7 @@ namespace ShopOnline.Web.Pages
 
         private void SetTotalPrice()
         {
-            TotalPrice = ShoppingCartItems.Sum(x=>x.TotalPrice).ToString("C");
+            TotalPrice = ShoppingCartItems?.Sum(x => x.TotalPrice).ToString("C");
         }
 
         private void SetTotalQuantity()
@@ -121,16 +120,17 @@ namespace ShopOnline.Web.Pages
             TotalQuantity = ShoppingCartItems.Sum(x => x.Qty);
         }
 
-        private CartItemDto GetCartItem(int id)
+        private CartItemDto? GetCartItem(int id)
         {
-            return ShoppingCartItems.FirstOrDefault(x => x.Id == id)!;
+            return ShoppingCartItems?.FirstOrDefault(x => x.Id == id)!;
         }
 
         private async Task RemoveCartItem(int id)
         {
             var cartItemDto = GetCartItem(id);
 
-            ShoppingCartItems.Remove(cartItemDto);
+            if (cartItemDto != null)
+                ShoppingCartItems?.Remove(cartItemDto);
 
             await CartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
         }

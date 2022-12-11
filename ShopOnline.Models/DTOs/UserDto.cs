@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShopOnline.Core.DTOs
+namespace ShopOnline.Models.DTOs
 {
     public class LoginUserDto
     {

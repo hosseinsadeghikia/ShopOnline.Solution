@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ShopOnline.Core.DTOs;
 using ShopOnline.Data;
+using ShopOnline.Models.DTOs;
 
 namespace ShopOnline.Api.Configurations
 {

@@ -1,6 +1,6 @@
-﻿using System.Net.Http.Json;
-using ShopOnline.Models.DTOs;
+﻿using ShopOnline.Models.DTOs;
 using ShopOnline.Web.Services.Contracts;
+using System.Net.Http.Json;
 
 namespace ShopOnline.Web.Services
 {

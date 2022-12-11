@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using ShopOnline.Models.DTOs;
-using ShopOnline.Web.Services;
 using ShopOnline.Web.Services.Contracts;
 
 namespace ShopOnline.Web.Pages
@@ -18,6 +17,9 @@ namespace ShopOnline.Web.Pages
 
         [Inject]
         IManageCartItemsLocalStorageService CartItemsLocalStorageService { get; set; }
+
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
 
         public IEnumerable<ProductDto>? Products { get; set; }
 
@@ -43,6 +45,19 @@ namespace ShopOnline.Web.Pages
             {
                 ErrorMessage = ex.Message;
             }
+        }
+
+        protected IOrderedEnumerable<IGrouping<int, ProductDto>> GetGroupedProductsByCategory()
+        {
+            return from product in Products
+                group product by product.CategoryId into prodByCatGroup
+                orderby prodByCatGroup.Key
+                select prodByCatGroup;
+        }
+
+        protected string? GetCategoryName(IGrouping<int, ProductDto> groupedProductDto)
+        {
+            return groupedProductDto.FirstOrDefault(pg => pg.CategoryId == groupedProductDto.Key)?.CategoryName;
         }
 
         private async Task ClearLocalStorage()

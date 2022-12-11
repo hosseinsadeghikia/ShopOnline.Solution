@@ -1,5 +1,4 @@
 ﻿using Blazored.LocalStorage;
-using ShopOnline.Core.DTOs;
 using ShopOnline.Models.DTOs;
 using ShopOnline.Web.Services.Contracts;
 
@@ -25,7 +24,7 @@ namespace ShopOnline.Web.Services
                    ?? await AddCollection();
         }
 
-        public async Task SaveCollection(List<CartItemDto> cartItemDto)
+        public async Task SaveCollection(List<CartItemDto>? cartItemDto)
         {
             await _localStorageService.SetItemAsync(key, cartItemDto);
         }

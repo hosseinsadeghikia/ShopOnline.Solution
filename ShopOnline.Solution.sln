@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Web", "ShopOnlin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Api", "ShopOnline.Api\ShopOnline.Api.csproj", "{77009093-7E57-4AF2-8384-042861DBE776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopOnline.Core", "ShopOnline.Core\ShopOnline.Core\ShopOnline.Core.csproj", "{DA12AB07-93CA-45BC-B4A0-C3A62E9AF56E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Core", "ShopOnline.Core\ShopOnline.Core\ShopOnline.Core.csproj", "{DA12AB07-93CA-45BC-B4A0-C3A62E9AF56E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopOnline.Data", "ShopOnline.Data\ShopOnline.Data\ShopOnline.Data.csproj", "{AD340B43-E448-48C3-BCAF-9E34D781219D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Data", "ShopOnline.Data\ShopOnline.Data\ShopOnline.Data.csproj", "{AD340B43-E448-48C3-BCAF-9E34D781219D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Models", "ShopOnline.Models\ShopOnline.Models.csproj", "{4E59BAAE-F84B-4EC9-8213-39E3F65CED34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{AD340B43-E448-48C3-BCAF-9E34D781219D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD340B43-E448-48C3-BCAF-9E34D781219D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD340B43-E448-48C3-BCAF-9E34D781219D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E59BAAE-F84B-4EC9-8213-39E3F65CED34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E59BAAE-F84B-4EC9-8213-39E3F65CED34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E59BAAE-F84B-4EC9-8213-39E3F65CED34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E59BAAE-F84B-4EC9-8213-39E3F65CED34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

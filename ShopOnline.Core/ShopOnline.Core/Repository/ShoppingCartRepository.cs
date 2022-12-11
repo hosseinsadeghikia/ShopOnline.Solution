@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShopOnline.Core.DTOs;
 using ShopOnline.Core.IRepository;
 using ShopOnline.Data;
+using ShopOnline.Models.DTOs;
 
 namespace ShopOnline.Core.Repository
 {

@@ -6,10 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-	<ItemGroup>
-    <ProjectReference Include="..\ShopOnline.Core\ShopOnline.Core\ShopOnline.Core.csproj" />
-  </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Logs\" />
   </ItemGroup>
@@ -19,6 +15,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopOnline.Core\ShopOnline.Core\ShopOnline.Core.csproj" />
+    <ProjectReference Include="..\ShopOnline.Data\ShopOnline.Data\ShopOnline.Data.csproj" />
   </ItemGroup>
 
 </Project>

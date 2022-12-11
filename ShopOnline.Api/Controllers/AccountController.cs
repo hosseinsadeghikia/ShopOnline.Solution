@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ShopOnline.Core.DTOs;
 using ShopOnline.Core.Models;
 using ShopOnline.Core.Services;
 using ShopOnline.Data;
+using ShopOnline.Models.DTOs;
 
 namespace ShopOnline.Api.Controllers
 {

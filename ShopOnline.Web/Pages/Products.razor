@@ -13,16 +13,10 @@ else
 
     @if (productCount > 0)
     {
-        var groupedProductsByCategory = from product in Products
-            group product by product.CategoryId
-            into prodByCatGroup
-            orderby prodByCatGroup.Key
-            select prodByCatGroup;
-
         <div class="row mt-3">
-            @foreach (var productGroup in groupedProductsByCategory)
+            @foreach (var productGroup in GetGroupedProductsByCategory())
             {
-                <h4>@productGroup.FirstOrDefault(x=>x.CategoryId == productGroup.Key)?.CategoryName</h4>
+                <h4>@GetCategoryName(productGroup)</h4>
                 <DisplayProducts Products="@productGroup.Take(4)"></DisplayProducts>
                 <hr class="mb-3"/>
             }

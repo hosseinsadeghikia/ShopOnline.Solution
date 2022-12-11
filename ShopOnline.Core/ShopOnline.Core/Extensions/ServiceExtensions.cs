@@ -171,8 +171,8 @@ namespace ShopOnline.Core.Extensions
                 new RateLimitRule
                 {
                     Endpoint = "*",
-                    Limit = 1,
-                    Period = "5s"
+                    Limit = 60,
+                    Period = "1m"
                 }
             };
             services.Configure<IpRateLimitOptions>(opt =>

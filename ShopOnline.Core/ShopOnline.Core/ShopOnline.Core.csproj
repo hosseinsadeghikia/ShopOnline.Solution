@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ShopOnline.Data\ShopOnline.Data\ShopOnline.Data.csproj" />
+    <ProjectReference Include="..\..\ShopOnline.Models\ShopOnline.Models.csproj" />
   </ItemGroup>
 
 </Project>

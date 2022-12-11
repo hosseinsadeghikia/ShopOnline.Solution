@@ -21,14 +21,14 @@ namespace ShopOnline.Web.Pages
         [Inject]
         IManageCartItemsLocalStorageService CartItemsLocalStorageService { get; set; }
 
-        public ProductDto Product { get; set; }
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
+        public ProductDto? Product { get; set; }
 
         public string ErrorMessage { get; set; }
 
-        private List<CartItemDto> ShoppingCartItems { get; set; }
-
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        private List<CartItemDto>? ShoppingCartItems { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -51,7 +51,7 @@ namespace ShopOnline.Web.Pages
 
                 if (cartItemDto != null)
                 {
-                    ShoppingCartItems.Add(cartItemDto);
+                    ShoppingCartItems?.Add(cartItemDto);
                     await CartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
                 }
 
@@ -63,7 +63,7 @@ namespace ShopOnline.Web.Pages
             }
         }
 
-        private async Task<ProductDto> GetProductById(int id)
+        private async Task<ProductDto?> GetProductById(int id)
         {
             var productDto = await ProductsLocalStorageService.GetCollection();
 

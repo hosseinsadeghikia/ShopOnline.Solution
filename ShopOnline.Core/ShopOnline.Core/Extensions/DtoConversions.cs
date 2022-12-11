@@ -1,5 +1,5 @@
-﻿using ShopOnline.Core.DTOs;
-using ShopOnline.Data;
+﻿using ShopOnline.Data;
+using ShopOnline.Models.DTOs;
 
 namespace ShopOnline.Core.Extensions
 {

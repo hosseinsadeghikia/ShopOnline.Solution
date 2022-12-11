@@ -9,7 +9,7 @@ namespace ShopOnline.Web.Shared
         [Inject]
         public IProductService ProductService { get; set; }
 
-        public IEnumerable<ProductCategoryDto> ProductCategoryDtos { get; set; }
+        public IEnumerable<ProductCategoryDto>? ProductCategoryDto { get; set; }
 
         public string ErrorMessage { get; set; }
 
@@ -17,7 +17,7 @@ namespace ShopOnline.Web.Shared
         {
             try
             {
-                ProductCategoryDtos = await ProductService.GetProductCategories();
+                ProductCategoryDto = await ProductService.GetProductCategories();
             }
             catch (Exception ex)
             {

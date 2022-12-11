@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using ShopOnline.Models.DTOs;
-using ShopOnline.Web.Services;
 using ShopOnline.Web.Services.Contracts;
 
 namespace ShopOnline.Web.Pages
@@ -16,9 +15,9 @@ namespace ShopOnline.Web.Pages
         [Inject]
         public IManageProductsLocalStorageService ProductsLocalStorageService { get; set; }
 
-        public IEnumerable<ProductDto>  Products { get; set; }
+        public IEnumerable<ProductDto>? Products { get; set; }
 
-        public string CategoryName { get; set; }
+        public string? CategoryName { get; set; }
 
         public string ErrorMessage { get; set; }
 
@@ -45,7 +44,7 @@ namespace ShopOnline.Web.Pages
             }
         }
 
-        private async Task<IEnumerable<ProductDto>> GetProductCollectionByCategoryId(int categoryId)
+        private async Task<IEnumerable<ProductDto>?> GetProductCollectionByCategoryId(int categoryId)
         {
             var productCollection = await ProductsLocalStorageService.GetCollection();
 
