@@ -42,12 +42,12 @@ namespace ShopOnline.Core.Services
         public async Task<string> CreateRefreshToken()
         {
             await _userManager.RemoveAuthenticationTokenAsync(_user,
-                "HotelListingApi", "RefreshToken");
+                "ShopOnlineApi", "RefreshToken");
             var newRefreshToken = await _userManager.GenerateUserTokenAsync(_user,
-                "HotelListingApi", "RefreshToken");
+                "ShopOnlineApi", "RefreshToken");
 
             var result = await _userManager.SetAuthenticationTokenAsync(_user,
-                "HotelListingApi", "RefreshToken", newRefreshToken);
+                "ShopOnlineApi", "RefreshToken", newRefreshToken);
 
             return newRefreshToken;
         }
@@ -61,7 +61,7 @@ namespace ShopOnline.Core.Services
             try
             {
                 var isValid = await _userManager.VerifyUserTokenAsync(_user,
-                    "HotelListingApi", "RefreshToken", request.RefreshToken);
+                    "ShopOnlineApi", "RefreshToken", request.RefreshToken);
                 if (isValid)
                 {
                     return new TokenRequest { Token = await CreateToken(), RefreshToken = await CreateRefreshToken() };

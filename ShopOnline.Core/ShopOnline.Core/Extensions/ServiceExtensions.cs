@@ -71,8 +71,8 @@ namespace ShopOnline.Core.Extensions
         {
             services.AddSwaggerGen(sgo =>
             {
-                sgo.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelListing", Version = "v1" });
-                sgo.SwaggerDoc("v2", new OpenApiInfo { Title = "HotelListing", Version = "v2" });
+                sgo.SwaggerDoc("v1", new OpenApiInfo { Title = "ShopOnline", Version = "v1" });
+                sgo.SwaggerDoc("v2", new OpenApiInfo { Title = "ShopOnline", Version = "v2" });
 
                 sgo.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

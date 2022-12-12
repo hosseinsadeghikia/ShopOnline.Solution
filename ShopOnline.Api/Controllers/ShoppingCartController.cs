@@ -12,7 +12,8 @@ namespace ShopOnline.Api.Controllers
         private readonly IShoppingCartRepository _shoppingCartRepository;
         private readonly IProductRepository _productRepository;
 
-        public ShoppingCartController(IShoppingCartRepository shoppingCartRepository, IProductRepository productRepository)
+        public ShoppingCartController(IShoppingCartRepository shoppingCartRepository,
+                                      IProductRepository productRepository)
         {
             _shoppingCartRepository = shoppingCartRepository;
             _productRepository = productRepository;

@@ -46,7 +46,7 @@ namespace ShopOnline.Api.Controllers
 
                 if (product == null)
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
 
                 var productDto = product.ConvertToDto();
