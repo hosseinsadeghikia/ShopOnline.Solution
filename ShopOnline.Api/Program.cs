@@ -28,12 +28,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 //Cache Config
-builder.Services.ConfigureHttpCacheHeader();
+//builder.Services.ConfigureHttpCacheHeader();
 
 //Rate Limit Config
-builder.Services.AddMemoryCache();
-builder.Services.ConfigureRateLimiting();
-builder.Services.AddHttpContextAccessor();
+//builder.Services.AddMemoryCache();
+//builder.Services.ConfigureRateLimiting();
+//builder.Services.AddHttpContextAccessor();
 
 //Identity Config
 builder.Services.AddAuthentication();
@@ -109,9 +109,9 @@ app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 
-app.UseResponseCaching();
-app.UseHttpCacheHeaders();
-app.UseIpRateLimiting();
+//app.UseResponseCaching();
+//app.UseHttpCacheHeaders();
+//app.UseIpRateLimiting();
 
 app.UseRouting();
 

@@ -16,12 +16,6 @@ namespace ShopOnline.Web.Pages
         public IShoppingCartService ShoppingCartService { get; set; }
 
         [Inject]
-        IManageProductsLocalStorageService ProductsLocalStorageService { get; set; }
-
-        [Inject]
-        IManageCartItemsLocalStorageService CartItemsLocalStorageService { get; set; }
-
-        [Inject]
         public NavigationManager NavigationManager { get; set; }
 
         public ProductDto? Product { get; set; }
@@ -34,7 +28,7 @@ namespace ShopOnline.Web.Pages
         {
             try
             {
-                ShoppingCartItems = await CartItemsLocalStorageService.GetCollection();
+                ShoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
                 Product = await GetProductById(Id);
             }
             catch (Exception ex)
@@ -52,7 +46,6 @@ namespace ShopOnline.Web.Pages
                 if (cartItemDto != null)
                 {
                     ShoppingCartItems?.Add(cartItemDto);
-                    await CartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
                 }
 
                 NavigationManager.NavigateTo("/ShoppingCart");
@@ -65,7 +58,7 @@ namespace ShopOnline.Web.Pages
 
         private async Task<ProductDto?> GetProductById(int id)
         {
-            var productDto = await ProductsLocalStorageService.GetCollection();
+            var productDto = await ProductService.GetItems();
 
             if (productDto != null)
             {

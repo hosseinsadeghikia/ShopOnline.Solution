@@ -21,17 +21,13 @@ namespace ShopOnline.Web.Pages
         [Inject]
         protected IShoppingCartService ShoppingCartService { get; set; }
 
-        [Inject]
-        protected IManageCartItemsLocalStorageService CartItemsLocalStorageService { get; set; }
-
         protected string DisplayButtons { get; set; } = "block";
 
         protected override async Task OnInitializedAsync()
         {
             try
             {
-                //ShoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
-                ShoppingCartItems = await CartItemsLocalStorageService.GetCollection();
+                ShoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
 
                 if (ShoppingCartItems != null && ShoppingCartItems.Any())
                 {

@@ -50,9 +50,19 @@ namespace ShopOnline.Core.Repository
 
             if (item != null)
             {
-                item.Qty = cartItemQtyUpdateDto.Qty;
-                await _context.SaveChangesAsync();
-                return item;
+                var product = await _context.Products.Where(x => x.Id == item.ProductId)
+                    .FirstOrDefaultAsync();
+
+                if (product != null)
+                {
+                    if (product.Qty >= cartItemQtyUpdateDto.Qty)
+                    {
+                        item.Qty = cartItemQtyUpdateDto.Qty;
+                        await _context.SaveChangesAsync();
+                    }
+
+                    return item;
+                }
             }
 
             return null;
